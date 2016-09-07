@@ -15,14 +15,39 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="navbar-collapse" ng-class="{collapse: isCollapsed}" id="collapse-1">
+        <div class="navbar-collapse"
+             ng-class="{collapse: isCollapsed}"
+             ng-init="isActive"
+             id="collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-lock"></i>Login</a></li>
+                <li ng-class="{active: isActive === 'messages'}"
+                    ng-click="isActive = 'messages'">
+                  <a href="#">
+                  <i class="glyphicon glyphicon-envelope"></i>
+                  Messages</a>
+                </li>
+                <li ng-class="{active: isActive === 'login'}"
+                    ng-click="isActive = 'login'">
+                  <a href="#"><i class="glyphicon glyphicon-lock"></i>
+                    Login</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav side-nav">
-              <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
-              <li><a href="#"><i class="glyphicon glyphicon-lock"></i>Login</a></li>
+              <li ng-class="{active: isActive === 'dashboard'}"
+                  ng-click="isActive = 'dashboard'">
+                <a href="#">
+                  <i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
+              </li>
+              <li ng-class="{active: isActive === 'newPatients'}"
+                  ng-click="isActive = 'newPatients'">
+                <a href="#">
+                  <i class="glyphicon glyphicon-heart"></i> New Patients</a>
+              </li>
+              <li ng-class="{active: isActive === 'notepad'}"
+                  ng-click="isActive = 'notepad'">
+                <a href="#">
+                  <i class="glyphicon glyphicon-pencil"></i> Notepad</a>
+              </li>
             </ul>
         </div>
     </div>

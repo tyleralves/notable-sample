@@ -1,5 +1,8 @@
+$primary-color: #19bc9c;
+$inactive-color: #D3D3D3;
+
+
 body {
-  background: #F7F7F7;
   font-family: 'Lato', sans-serif;
 }
 
@@ -8,7 +11,7 @@ body {
     color: green;
     font-weight: 600;
   }
-  background: lightgray;
+  background: $inactive-color;
 }
 
 .component-col {
@@ -21,24 +24,36 @@ body {
 
 .n-navbar {
   height: 100px;
+  box-shadow: 0 0 5px 0;
 }
+
+
 
 .navbar-default {
   background: white;
   .navbar-nav {
-    li > a {
-      background: white;
-      color: #D3D3D3;
-      font-size: 15px;
-      text-transform: uppercase;
-      font-weight: bold;
-      line-height: 70px;
+    .active > a {
+      color: $primary-color;
     }
-    li > a:hover {
-      background: white;
-      color: #19bc9c;
+    li {
+      a {
+        background: white;
+        color: $inactive-color;
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 70px;
+      }
+      a:link, a:visited, a:hover, a:active {
+        background: white;
+      }
+      a:hover, a:active {
+        color: $primary-color;
+      }
+      a:focus {
+        color: $primary-color;
+      }
     }
-
   }
 
   .navbar-collapse {
@@ -52,8 +67,9 @@ body {
 
   @media (min-width: 768px) {
     .side-nav {
+      box-shadow: 5px 0 5px -5px;
       position: fixed;
-      top: 100px;
+      top: 98px;
       left: 225px;
       width: 225px;
       margin-left: -225px;
@@ -74,6 +90,15 @@ body {
   .brand-image {
     height: 70px;
   }
+}
+
+.content-title {
+  font-size: 40px;
+  color: $primary-color;
+}
+
+.thin {
+  font-weight: 300;
 }
 
 .panel-title > .glyphicon {
