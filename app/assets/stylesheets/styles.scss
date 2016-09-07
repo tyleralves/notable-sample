@@ -1,7 +1,85 @@
+body {
+  background: #F7F7F7;
+  font-family: 'Lato', sans-serif;
+}
+
 .test-class {
   .inner-test {
     color: green;
     font-weight: 600;
   }
   background: lightgray;
+}
+
+.component-col {
+  border: 1px solid black;
+}
+
+#content-col {
+  margin-top: 100px;
+}
+
+.n-navbar {
+  height: 100px;
+}
+
+.navbar-default {
+  background: white;
+  .navbar-nav {
+    li > a {
+      background: white;
+      color: #D3D3D3;
+      font-size: 15px;
+      text-transform: uppercase;
+      font-weight: bold;
+      line-height: 70px;
+    }
+    li > a:hover {
+      background: white;
+      color: #19bc9c;
+    }
+
+  }
+
+  .navbar-collapse {
+    background: white;
+    height: auto;
+  }
+
+  .navbar-header {
+    height: 100px;
+  }
+
+  @media (min-width: 768px) {
+    .side-nav {
+      position: fixed;
+      top: 100px;
+      left: 225px;
+      width: 225px;
+      margin-left: -225px;
+      border: none;
+      border-radius: 0;
+      overflow-y: auto;
+      bottom: 0;
+      overflow-x: hidden;
+      padding-bottom: 40px;
+
+      li {
+        float: none;
+      }
+    }
+
+  }
+
+  .brand-image {
+    height: 70px;
+  }
+}
+
+.panel-title > .glyphicon {
+  font-size: 15px;
+}
+
+.panel-title-text {
+  margin-left: 5px;
 }

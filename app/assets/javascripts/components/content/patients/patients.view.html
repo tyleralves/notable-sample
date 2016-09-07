@@ -1,0 +1,44 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <i class="glyphicon glyphicon-user"></i>
+            <span class="panel-title-text">Unassigned Patients</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Physician</th>
+                    <th>Staff</th>
+                    <th>Assign</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="patient in $ctrl.patients">
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.physician_id }}</td>
+                    <td>{{ patient.scientist_id }}</td>
+                    <td>
+                        <form ng-submit="$ctrl.assignScientist()">
+                            <div class="input-group">
+                                <select class="form-control" id="scientist-id" ng-model="$ctrl.assignedScientist.scientist_id">
+                                    <option value="1">Id 1</option>
+                                    <option value="2">Id 2</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <input class="btn btn-default" type="submit" value="Assign" />
+                                </span>
+                            </div>
+
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

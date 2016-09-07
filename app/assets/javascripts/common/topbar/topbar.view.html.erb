@@ -1,0 +1,29 @@
+<nav class="navbar n-navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle"
+                    ng-init="isCollapsed = true"
+                    ng-click="isCollapsed = !isCollapsed"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle Navigation</span>
+                <i class="glyphicon glyphicon-menu-hamburger"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img class="brand-image" src="<%= image_path('NotableLabs-Logo-01.png') %>" />
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-collapse" ng-class="{collapse: isCollapsed}" id="collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-lock"></i>Login</a></li>
+            </ul>
+            <ul class="nav navbar-nav side-nav">
+              <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages</a></li>
+              <li><a href="#"><i class="glyphicon glyphicon-lock"></i>Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
