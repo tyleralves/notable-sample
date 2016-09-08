@@ -22,20 +22,20 @@ body {
   margin-top: 100px;
 }
 
+.content-col-extend {
+  padding-left: 45px;
+}
+
 .n-navbar {
   height: 100px;
   box-shadow: 0 0 5px 0;
 }
 
-
-
 .navbar-default {
   background: white;
   .navbar-nav {
-    .active > a {
-      color: $primary-color;
-    }
-    li {
+
+    li, .active {
       a {
         background: white;
         color: $inactive-color;
@@ -47,12 +47,12 @@ body {
       a:link, a:visited, a:hover, a:active {
         background: white;
       }
-      a:hover, a:active {
+      a:hover, a:active, a:focus {
         color: $primary-color;
       }
-      a:focus {
-        color: $primary-color;
-      }
+    }
+    .active a, .active i {
+      color: $primary-color;
     }
   }
 
@@ -65,14 +65,40 @@ body {
     height: 100px;
   }
 
+  .side-nav-close-btn {
+    display: none;
+  }
+
   @media (min-width: 768px) {
-    .side-nav {
+    .side-nav-container {
+      background: white;
       box-shadow: 5px 0 5px -5px;
+      display: flex;
+      margin-bottom: -10px;
       position: fixed;
       top: 98px;
-      left: 225px;
+      left: 0;
+      bottom: 0;
       width: 225px;
-      margin-left: -225px;
+
+      .side-nav-close-btn {
+        display: flex;
+        height: 100%;
+        margin-left: auto;
+        margin-right: 5px;
+        align-items: center;
+
+        i {
+          color: $inactive-color;
+          cursor: pointer;
+        }
+        i:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .side-nav {
       border: none;
       border-radius: 0;
       overflow-y: auto;
@@ -85,6 +111,9 @@ body {
       }
     }
 
+    .side-nav-closed {
+      left: -200px;
+    }
   }
 
   .brand-image {

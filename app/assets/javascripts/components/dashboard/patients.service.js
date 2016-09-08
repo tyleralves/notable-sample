@@ -1,5 +1,5 @@
 angular
-  .module('app')
+  .module('dashboard')
   .service('PatientsService', PatientsService);
 
 function PatientsService($http) {
@@ -12,7 +12,6 @@ function PatientsService($http) {
   PatientsService.getPatients = function() {
     return $http.get('/patients.json')
       .then(function(patients) {
-        console.log(patients);
         angular.copy(patients.data, PatientsService.patients);
       });
   };
@@ -27,12 +26,10 @@ function PatientsService($http) {
   };
 
   // Puts provided scientist_id in patients table patient(:id) row
-  PatientsService.assignScientist = function(scientist_id) {
-    console.log(scientist_id);
-    return $http.put('patients/2/assignscientist.json', scientist_id)
+  PatientsService.assignScientist = function(patient_id, scientist_id) {
+    return $http.put('patients/' + patient_id + '/assignscientist.json', scientist_id)
       .then(function(patient){
-        console.log(patient);
-        //PatientsService.physicians.push(physician.data);
+        PatientsService.getPatients();
       });
   };
 

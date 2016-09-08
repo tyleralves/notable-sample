@@ -1,10 +1,10 @@
 <nav class="navbar n-navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid nav-container">
+
         <div class="navbar-header">
             <button type="button"
                     class="navbar-toggle"
-                    ng-init="isCollapsed = true"
-                    ng-click="isCollapsed = !isCollapsed"
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
                     aria-expanded="false">
                 <span class="sr-only">Toggle Navigation</span>
                 <i class="glyphicon glyphicon-menu-hamburger"></i>
@@ -16,39 +16,51 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse"
-             ng-class="{collapse: isCollapsed}"
-             ng-init="isActive"
+             ng-class="{collapse: $ctrl.isCollapsed}"
              id="collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{active: isActive === 'messages'}"
-                    ng-click="isActive = 'messages'">
+                <li ng-class="{active: $ctrl.isActive === 'messages'}"
+                    ng-click="$ctrl.isActive = 'messages'">
                   <a href="#">
                   <i class="glyphicon glyphicon-envelope"></i>
                   Messages</a>
                 </li>
-                <li ng-class="{active: isActive === 'login'}"
-                    ng-click="isActive = 'login'">
+                <li ng-class="{active: $ctrl.isActive === 'login'}"
+                    ng-click="$ctrl.isActive = 'login'">
                   <a href="#"><i class="glyphicon glyphicon-lock"></i>
                     Login</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav side-nav">
-              <li ng-class="{active: isActive === 'dashboard'}"
-                  ng-click="isActive = 'dashboard'">
-                <a href="#">
-                  <i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
-              </li>
-              <li ng-class="{active: isActive === 'newPatients'}"
-                  ng-click="isActive = 'newPatients'">
-                <a href="#">
-                  <i class="glyphicon glyphicon-heart"></i> New Patients</a>
-              </li>
-              <li ng-class="{active: isActive === 'notepad'}"
-                  ng-click="isActive = 'notepad'">
-                <a href="#">
-                  <i class="glyphicon glyphicon-pencil"></i> Notepad</a>
-              </li>
-            </ul>
+
+            <!-- Side Nav -->
+            <!-- Side Nav slides off screen when toggle is clicked -->
+            <div class="side-nav-container" ng-class="{'side-nav-closed': $ctrl.NavService.isSideClosed}">
+              <ul class="nav navbar-nav side-nav">
+                <li ng-class="{active: $ctrl.isActive === 'dashboard'}"
+                    ng-click="$ctrl.isActive = 'dashboard'">
+                  <a ui-sref="home">
+                    <i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
+                </li>
+                <li ng-class="{active: $ctrl.isActive === 'patients'}"
+                    ng-click="$ctrl.isActive = 'patients'">
+                  <a ui-sref="patients">
+                    <i class="glyphicon glyphicon-heart"></i> Patient List</a>
+                </li>
+                <li ng-class="{active: $ctrl.isActive === 'notepad'}"
+                    ng-click="$ctrl.isActive = 'notepad'">
+                  <a ui-sref="notepad">
+                    <i class="glyphicon glyphicon-pencil"></i> Notepad</a>
+                </li>
+              </ul>
+              <div class="side-nav-close-btn" ng-click="$ctrl.closeSide()">
+                <i class="glyphicon"
+                   ng-class="{
+                   'glyphicon-chevron-left': !$ctrl.NavService.isSideClosed,
+                   'glyphicon-chevron-right active': $ctrl.NavService.isSideClosed
+                   }"></i>
+              </div>
+            </div>
+
         </div>
     </div>
 </nav>

@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   resources :physicians, only: [:create, :index, :show] do
     member do
-      resources :patients, only: [:create, :show]
+      resources :'patients', only: [:create, :show]
     end
   end
 
 
-  resources :patients, only: [:index, :show] do
+  resources :'patients', only: [:index, :show] do
     member do
       put '/assignscientist' => 'patients#assign_scientist'
     end

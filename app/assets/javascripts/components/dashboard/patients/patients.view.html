@@ -10,6 +10,7 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th>Submitted</th>
                     <th>Name</th>
                     <th>Physician</th>
                     <th>Staff</th>
@@ -17,16 +18,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="patient in $ctrl.patients">
+                <tr ng-repeat="patient in $ctrl.patients" ng-init="assignedScientist">
+                    <td>{{ patient.created_at | date : 'MMM d, y - h:mm a' }}</td>
                     <td>{{ patient.name }}</td>
-                    <td>{{ patient.physician_id }}</td>
-                    <td>{{ patient.scientist_id }}</td>
+                    <td>{{ patient.physician.name }}</td>
+                    <td>{{ patient.scientist.name }}</td>
                     <td>
-                        <form ng-submit="$ctrl.assignScientist()">
+                        <form ng-submit="$ctrl.assignScientist(patient.id, assignedScientist)">
                             <div class="input-group">
-                                <select class="form-control" id="scientist-id" ng-model="$ctrl.assignedScientist.scientist_id">
-                                    <option value="1">Id 1</option>
-                                    <option value="2">Id 2</option>
+                                <select
+                                        ng-options="scientist as scientist.name for scientist in $ctrl.scientists track by scientist.id"
+                                        class="form-control"
+                                        id="scientist-id"
+                                        ng-model="assignedScientist">
                                 </select>
                                 <span class="input-group-btn">
                                     <input class="btn btn-default" type="submit" value="Assign" />

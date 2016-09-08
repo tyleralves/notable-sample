@@ -27,7 +27,7 @@ gem 'angular_rails_csrf'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :content do
+group :development, :dashboard do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
