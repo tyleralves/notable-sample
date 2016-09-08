@@ -35,3 +35,5 @@ function PatientsService($http) {
 
   return PatientsService;
 }
+
+PatientsService.$inject = ['$http'];

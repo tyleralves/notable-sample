@@ -16,3 +16,5 @@ function ScientistsService($http) {
 
   return ScientistsService;
 }
+
+ScientistsService.$inject = ['$http'];
