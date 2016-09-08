@@ -2,7 +2,7 @@ angular
   .module('patient-list')
   .controller('PatientsAllController', PatientsAllController);
 
-function PatientsAllController(DashboardService, PatientsService, ScientistsService) {
+function PatientsAllController(PatientsService, ScientistsService) {
   var ctrl = this;
 
   ctrl.patients = PatientsService.patients;
@@ -19,4 +19,4 @@ function PatientsAllController(DashboardService, PatientsService, ScientistsServ
   };
 }
 
-PatientsAllController.$inject = ['DashboardService', 'PatientsService', 'ScientistsService'];
+PatientsAllController.$inject = ['PatientsService', 'ScientistsService'];

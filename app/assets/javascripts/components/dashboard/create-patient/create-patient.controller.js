@@ -2,7 +2,7 @@ angular
   .module('dashboard')
   .controller('CreatePatientController', CreatePatientController);
 
-function CreatePatientController(DashboardService, PatientsService) {
+function CreatePatientController(PatientsService) {
   var ctrl = this;
 
   // Used for create patient form
@@ -14,4 +14,4 @@ function CreatePatientController(DashboardService, PatientsService) {
   };
 }
 
-CreatePatientController.$inject = ['DashboardService', 'PatientsService'];
+CreatePatientController.$inject = ['PatientsService'];
