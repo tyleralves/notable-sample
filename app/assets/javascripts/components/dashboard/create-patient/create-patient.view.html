@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span class="panel-title-text">Submit New Patient</span>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form ng-submit="$ctrl.addPatient()">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" ng-model="$ctrl.newPatient.name" />
+            <input type="submit" value="Add Patient" />
+        </form>
+    </div>
+</div>
