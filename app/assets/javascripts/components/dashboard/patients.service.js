@@ -5,9 +5,19 @@ angular
 function PatientsService($http, $rootScope, UsersService) {
   var PatientsService = {};
 
+  PatientsService.patient = {};
   PatientsService.patients = [];
   PatientsService.userPatients = [];
   PatientsService.currentUser = UsersService.currentUser;
+
+  // Get one patient
+  PatientsService.get = function(patient_id) {
+    return $http.get('/patients/' + patient_id + '.json')
+      .then(function(patient) {
+        angular.copy(patient.data, PatientsService.patient);
+      }
+    );
+  };
 
   // Gets all patients
   PatientsService.getPatients = function() {
@@ -40,6 +50,14 @@ function PatientsService($http, $rootScope, UsersService) {
       .then(function(patient){
         PatientsService.getPatients();
         PatientsService.getUserPatients();
+      });
+  };
+
+  // Adds record to statuses table and status reference to patients table
+  PatientsService.addStatus = function(patient_id, status) {
+    return $http.post('/patients/' + patient_id + '/statuses.json', status)
+      .then(function(status){
+        PatientsService.patient.statuses.push(status.data);
       });
   };
 

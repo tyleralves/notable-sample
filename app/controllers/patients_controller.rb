@@ -36,4 +36,5 @@ class PatientsController < ApplicationController
   def assign_params
     params.require(:patient).permit(:scientist_id)
   end
+
 end

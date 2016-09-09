@@ -2,12 +2,15 @@ angular
   .module('app')
   .controller('TopbarController', TopbarController);
 
-function TopbarController(Auth, NavService, UsersService) {
+function TopbarController($state, Auth, NavService, UsersService) {
   var ctrl = this;
 
   // Authorization
   ctrl.signedIn = Auth.isAuthenticated;
-  ctrl.logout = Auth.logout;
+  ctrl.logout = function() {
+    Auth.logout();
+    $state.go('welcome');
+  };
   ctrl.user = UsersService.currentUser;
 
   // Initialize properties for nav effects
@@ -21,4 +24,4 @@ function TopbarController(Auth, NavService, UsersService) {
 
 }
 
-TopbarController.$inject = ['Auth', 'NavService', 'UsersService'];
+TopbarController.$inject = ['$state', 'Auth', 'NavService', 'UsersService'];

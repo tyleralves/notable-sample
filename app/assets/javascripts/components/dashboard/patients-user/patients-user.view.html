@@ -21,7 +21,9 @@
                 <tr ng-show="!$ctrl.patients.length">
                     <td>You currently have no patients.</td>
                 </tr>
-                <tr ng-repeat="patient in $ctrl.patients" ng-init="assignedScientist={id:null}">
+                <tr ng-repeat="patient in $ctrl.patients track by patient.id"
+                    ui-sref="patient({patient_id: patient.id})"
+                    ng-init="assignedScientist={id:null}">
                     <td>{{ patient.created_at | date : 'MMM d, y - h:mm a' }}</td>
                     <td>{{ patient.name }}</td>
                     <td>{{ patient.physician.name }}</td>

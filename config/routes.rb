@@ -7,15 +7,19 @@ Rails.application.routes.draw do
 
   resources :physicians, only: [:create, :index, :show] do
     member do
-      resources :'patients', only: [:create, :show]
+      resources :patients, only: [:create, :show]
     end
   end
 
-  authenticated :user do
-    resources :'patients', only: [:index, :show] do
-      member do
-        put '/assignscientist' => 'patients#assign_scientist'
-      end
+
+  resources :patients, only: [:index, :show] do
+    resources :statuses, only: [:create, :show, :index]
+    resources :results, only: [:index]
+    member do
+      post '/importresults' => 'results#import'
+    end
+    member do
+      put '/assignscientist' => 'patients#assign_scientist'
     end
   end
 
@@ -25,8 +29,9 @@ Rails.application.routes.draw do
     end
   end
 
-  # Allows Angular HTML5 routes
-  get "/*path" => redirect("/?goto=%{path}")
+  # Allows html5 routes
+  # get "/*path/*sub" => redirect("/?goto=%{path}&sub=%{sub}")
+
   # You can have the root of your site routed with "root"
   root 'application#angular'
 end
