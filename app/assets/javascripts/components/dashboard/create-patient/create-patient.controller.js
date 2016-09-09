@@ -9,8 +9,8 @@ function CreatePatientController(PatientsService) {
   ctrl.newPatient = {};
 
   ctrl.addPatient = function() {
-    console.log(ctrl.newPatient);
     PatientsService.addPatient(ctrl.newPatient);
+    ctrl.newPatient = '';
   };
 }
 

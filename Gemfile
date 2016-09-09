@@ -17,6 +17,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders'
 # Sends token for post requests
 gem 'angular_rails_csrf'
+# User Authentication
+gem 'devise'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

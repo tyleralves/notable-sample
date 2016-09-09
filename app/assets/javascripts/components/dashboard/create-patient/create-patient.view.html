@@ -7,10 +7,15 @@
     </div>
 
     <div class="panel-body">
-        <form ng-submit="$ctrl.addPatient()">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" ng-model="$ctrl.newPatient.name" />
-            <input type="submit" value="Add Patient" />
+        <form class="form-inline" ng-submit="$ctrl.addPatient()">
+            <div class="form-group">
+                <label class="sr-only" for="name">Name</label>
+                <input class="form-control" type="text"
+                       id="name" name="name"
+                       ng-model="$ctrl.newPatient.name"
+                       placeholder="Name"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Add Patient" />
         </form>
     </div>
 </div>

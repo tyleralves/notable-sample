@@ -1,12 +1,13 @@
 angular
-  .module('dashboard')
+  .module('common')
   .service('PatientsService', PatientsService);
 
-function PatientsService($http) {
+function PatientsService($http, $rootScope, UsersService) {
   var PatientsService = {};
 
   PatientsService.patients = [];
-  PatientsService.currentPatient = {}; //Necessary?
+  PatientsService.userPatients = [];
+  PatientsService.currentUser = UsersService.currentUser;
 
   // Gets all patients
   PatientsService.getPatients = function() {
@@ -16,12 +17,19 @@ function PatientsService($http) {
       });
   };
 
+  // Gets current user's patients
+  PatientsService.getUserPatients = function() {
+    return $http.get('/users/' + PatientsService.currentUser.id + '/patients.json')
+      .then(function(patients) {
+        angular.copy(patients.data, PatientsService.userPatients);
+      });
+  };
+
   // Adds record to patients table and patient reference to users table
   PatientsService.addPatient = function(patient) {
-    return $http.post('/physicians/4/patients.json', patient)
+    return $http.post('/physicians/' + UsersService.currentUser.id + '/patients.json', patient)
       .then(function(patient){
         PatientsService.patients.push(patient.data);
-        angular.copy(patient.data, PatientsService.currentPatient);
       });
   };
 
@@ -33,7 +41,23 @@ function PatientsService($http) {
       });
   };
 
+  // Gets current user's patients on login
+  /* Calling here is more expensive than calling specifically when needed in controller
+   * However, performance is definitely not an issue for this application, and this
+   * infrastructure is much easier to reason about.
+   */
+
+  $rootScope.$on('UsersService:getCurrentUser', function(e, user) {
+    console.log('getUserPatients');
+    PatientsService.getUserPatients();
+  });
+
+  // Clear userPatients on logout
+  $rootScope.$on('devise:logout', function(e, user) {
+    angular.copy({}, PatientsService.userPatients);
+  });
+
   return PatientsService;
 }
 
-PatientsService.$inject = ['$http'];
+PatientsService.$inject = ['$http', '$rootScope', 'UsersService'];
