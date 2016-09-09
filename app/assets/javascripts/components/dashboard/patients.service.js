@@ -30,6 +30,7 @@ function PatientsService($http, $rootScope, UsersService) {
     return $http.post('/physicians/' + UsersService.currentUser.id + '/patients.json', patient)
       .then(function(patient){
         PatientsService.patients.push(patient.data);
+        PatientsService.userPatients.push(patient.data);
       });
   };
 
@@ -38,6 +39,7 @@ function PatientsService($http, $rootScope, UsersService) {
     return $http.put('patients/' + patient_id + '/assignscientist.json', scientist_id)
       .then(function(patient){
         PatientsService.getPatients();
+        PatientsService.getUserPatients();
       });
   };
 
@@ -48,7 +50,6 @@ function PatientsService($http, $rootScope, UsersService) {
    */
 
   $rootScope.$on('UsersService:getCurrentUser', function(e, user) {
-    console.log('getUserPatients');
     PatientsService.getUserPatients();
   });
 

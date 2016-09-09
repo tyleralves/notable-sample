@@ -9,7 +9,6 @@ function UsersService($rootScope, Auth) {
 
   UsersService.getCurrentUser = function() {
     Auth.currentUser().then(function(user) {
-      console.log('got current user:' + user);
       angular.copy(user, UsersService.currentUser);
       $rootScope.$broadcast('UsersService:getCurrentUser');
     });

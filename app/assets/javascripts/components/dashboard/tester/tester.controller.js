@@ -11,12 +11,10 @@ function TesterController(DashboardService, PatientsService) {
   ctrl.newPhysician = {};
 
   ctrl.addScientist = function() {
-    console.log(ctrl.newScentist);
     DashboardService.addScientist(ctrl.newScientist);
   };
 
   ctrl.addPhysician = function() {
-    console.log(ctrl.newPhysician);
     DashboardService.addPhysician(ctrl.newPhysician);
   };
 }

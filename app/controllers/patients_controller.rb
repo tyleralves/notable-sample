@@ -17,7 +17,6 @@ class PatientsController < ApplicationController
   end
 
   def assign_scientist
-    scientist = Scientist.find(assign_params[:scientist_id])
     patient = Patient.find(params[:id])
     patient.scientist_id = assign_params[:scientist_id]
     patient.save

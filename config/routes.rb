@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
-
-  resources :'patients', only: [:index, :show] do
-    member do
-      put '/assignscientist' => 'patients#assign_scientist'
+  authenticated :user do
+    resources :'patients', only: [:index, :show] do
+      member do
+        put '/assignscientist' => 'patients#assign_scientist'
+      end
     end
   end
 
