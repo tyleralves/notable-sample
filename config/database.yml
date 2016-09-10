@@ -6,7 +6,9 @@ default: &default
 
 development:
   <<: *default
-  database: my_database_development
+  database: my_dev_db
+  username: postgres
+  password: bernard
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,6 +16,8 @@ development:
 test:
   <<: *default
   database: db/my_database_test
+  username: postgres
+  password: bernard
 
 production:
   <<: *default

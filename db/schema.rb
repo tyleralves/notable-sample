@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160909154249) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "patients", force: :cascade do |t|
     t.string   "name"
     t.integer  "scientist_id"
@@ -21,8 +24,16 @@ ActiveRecord::Schema.define(version: 20160909154249) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "patients", ["physician_id"], name: "index_patients_on_physician_id"
-  add_index "patients", ["scientist_id"], name: "index_patients_on_scientist_id"
+  add_index "patients", ["physician_id"], name: "index_patients_on_physician_id", using: :btree
+  add_index "patients", ["scientist_id"], name: "index_patients_on_scientist_id", using: :btree
+
+  create_table "physicians", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "physicians", ["user_id"], name: "index_physicians_on_user_id", using: :btree
 
   create_table "results", force: :cascade do |t|
     t.string   "combination"
@@ -32,7 +43,15 @@ ActiveRecord::Schema.define(version: 20160909154249) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "results", ["patient_id"], name: "index_results_on_patient_id"
+  add_index "results", ["patient_id"], name: "index_results_on_patient_id", using: :btree
+
+  create_table "scientists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "scientists", ["user_id"], name: "index_scientists_on_user_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.string   "body"
@@ -41,21 +60,7 @@ ActiveRecord::Schema.define(version: 20160909154249) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "statuses", ["patient_id"], name: "index_statuses_on_patient_id"
-
-  create_table "tasks", force: :cascade do |t|
-    t.string   "name"
-    t.string   "content"
-    t.integer  "status"
-    t.boolean  "complete"
-    t.integer  "scientist_id"
-    t.integer  "physician_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "tasks", ["physician_id"], name: "index_tasks_on_physician_id"
-  add_index "tasks", ["scientist_id"], name: "index_tasks_on_scientist_id"
+  add_index "statuses", ["patient_id"], name: "index_statuses_on_patient_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -76,16 +81,12 @@ ActiveRecord::Schema.define(version: 20160909154249) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  create_table "users_data", force: :cascade do |t|
-    t.string   "name"
-    t.string   "image_url"
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "physicians", "users"
+  add_foreign_key "results", "patients"
+  add_foreign_key "scientists", "users"
+  add_foreign_key "statuses", "patients"
 end
