@@ -20,7 +20,6 @@ gem 'angular_rails_csrf'
 # User Authentication
 gem 'devise'
 
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -45,6 +44,8 @@ end
 group :production do
   # Use postgres as the database for Active Record
   gem 'pg'
+  gem 'rails_12factor'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
