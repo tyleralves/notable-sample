@@ -14,7 +14,7 @@
                     <th>Name</th>
                     <th>Physician</th>
                     <th>Staff</th>
-                    <th>Assign</th>
+                    <th>Reassign</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,12 +22,11 @@
                     <td>You currently have no patients.</td>
                 </tr>
                 <tr ng-repeat="patient in $ctrl.patients track by patient.id"
-                    ui-sref="patient({patient_id: patient.id})"
                     ng-init="assignedScientist={id:null}">
-                    <td>{{ patient.created_at | date : 'MMM d, y - h:mm a' }}</td>
-                    <td>{{ patient.name }}</td>
-                    <td>{{ patient.physician.name }}</td>
-                    <td>{{ patient.scientist.name }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.created_at | date : 'MMM d, y - h:mm a' }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.name }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.physician.name }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.scientist.name }}</td>
                     <td>
                         <form ng-submit="$ctrl.assignScientist(patient.id, assignedScientist)">
                             <div class="input-group">

@@ -6,8 +6,13 @@ class PatientsController < ApplicationController
   end
 
   def create
-    physician = Physician.find(params[:id])
-    patient = physician.patients.create(patient_params)
+    user = User.find(params[:id])
+    if user[:type] == 'Scientist'
+      user_model = Scientist.find(params[:id])
+    else
+      user_model = Physician.find(params[:id])
+    end
+    patient = user_model.patients.create(patient_params)
 
     respond_with patient, location: nil
   end

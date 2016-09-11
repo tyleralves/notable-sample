@@ -37,7 +37,7 @@ function PatientsService($http, $rootScope, UsersService) {
 
   // Adds record to patients table and patient reference to users table
   PatientsService.addPatient = function(patient) {
-    return $http.post('/physicians/' + UsersService.currentUser.id + '/patients.json', patient)
+    return $http.post('/users/' + UsersService.currentUser.id + '/patients.json', patient)
       .then(function(patient){
         PatientsService.patients.push(patient.data);
         PatientsService.userPatients.push(patient.data);

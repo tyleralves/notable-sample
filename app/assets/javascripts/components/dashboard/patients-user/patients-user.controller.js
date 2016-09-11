@@ -8,6 +8,9 @@ function PatientsUserController(PatientsService, ScientistsService) {
   ctrl.patients = PatientsService.userPatients;
   ctrl.scientists = ScientistsService.scientists;
 
+  // Move this to ui-router resolve(?)
+  ScientistsService.getScientists();
+
   ctrl.assignScientist = function(patientId, assignedScientist) {
     PatientsService.assignScientist(patientId, {scientist_id: assignedScientist.id});
   };

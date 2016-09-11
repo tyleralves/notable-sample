@@ -10,11 +10,8 @@ function ResultsController(PatientsService, UsersService, Upload) {
   ctrl.resultUpload = {};
   ctrl.currentUser = UsersService.currentUser;
 
-  console.log(ctrl.currentUser);
-
   ctrl.addStatus = function() {
     PatientsService.addStatus(ctrl.patient.id, ctrl.newStatus);
-    //PatientsService.get(ctrl.patient.id);
     ctrl.newStatus = '';
   };
 
@@ -32,6 +29,7 @@ function ResultsController(PatientsService, UsersService, Upload) {
       data: {file: file}
     }).then(function (res) {
       console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
+      PatientsService.get(ctrl.patient.id);
     }, function (res) {
       console.log('Error status: ' + res.status);
     }, function (evt) {
