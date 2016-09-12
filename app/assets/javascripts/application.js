@@ -1,6 +1,8 @@
 //= require angular
 //= require angular-rails-templates
 //= require angular-ui-router
+//= require jquery
+//= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
 //= require AngularDevise
 //= require ng-file-upload-shim
 //= require ng-file-upload
