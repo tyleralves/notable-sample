@@ -1,0 +1,15 @@
+<topbar></topbar>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Toggles between col-md-10 and col-md-12 based on chevron-left icon click in topbar component -->
+        <div
+            ng-class="{
+                'col-md-10 col-md-push-2': !$ctrl.NavService.isSideClosed,
+                'col-md-12 content-col-extend': $ctrl.NavService.isSideClosed
+            }"
+            id="content-col">
+
+            <ui-view></ui-view>
+        </div>
+    </div>
+</div>
