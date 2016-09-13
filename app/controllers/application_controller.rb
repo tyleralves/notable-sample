@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   def angular
-    flash[:notice] = "Toon has been tagged"
+    # flash[:notice] = "Toon has been tagged"
     render 'layouts/application'
   end
 

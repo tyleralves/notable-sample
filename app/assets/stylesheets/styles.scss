@@ -44,6 +44,15 @@ body {
 
 .navbar-default {
   background: white;
+  .navbar-toggle, .navbar-toggle:focus {
+    background: white;
+    border: none;
+    font-size: 30px;
+    height: 99px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .navbar-nav {
 
     li, .active {
@@ -153,4 +162,8 @@ body {
   position: static;
   width: 90%;
   height: 400px;
+}
+
+.auth-alert {
+  margin-top: 15px;
 }

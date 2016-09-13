@@ -2,16 +2,8 @@
 
 TODO:
 1. Welcome page introduction and instructions
-
-
-
-
-
-7. Separate sidebar into its own component
-8. Tooltip ('Placeholder') on 'Notepad' mouseover
-9. Tooltip ('Placeholder') on 'Messages' mouseover
 10. Add test_results.csv to git, and include in instructions
-11. Flash messages for login/ register
+
 
 DONE:
 2. Patients 'Chart Title' -> 'Results'
@@ -20,3 +12,5 @@ DONE:
 5. Physicians shouldn't be able to assign staff
 6. Physicians shouldn't be able to view patient list
   - Remove link from sidebar
+7. Mobile collapse on selection, hamburger icon
+11. Flash messages for login/ register

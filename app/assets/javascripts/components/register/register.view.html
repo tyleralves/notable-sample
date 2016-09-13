@@ -23,5 +23,6 @@
             </div>
             <input class="btn btn-primary" type="submit" value="Register">
         </form>
+        <div ng-show="$ctrl.error" class="alert alert-danger auth-alert">{{ $ctrl.error }}</div>
     </div>
 </div>
