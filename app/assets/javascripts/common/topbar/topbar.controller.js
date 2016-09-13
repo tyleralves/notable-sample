@@ -11,7 +11,7 @@ function TopbarController($state, Auth, NavService, UsersService) {
     Auth.logout();
     $state.go('welcome');
   };
-  ctrl.user = UsersService.currentUser;
+  ctrl.currentUser = UsersService.currentUser;
 
   // Initialize properties for nav effects
   ctrl.isCollapsed = true;

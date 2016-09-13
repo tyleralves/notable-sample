@@ -39,7 +39,7 @@
                 </li>
                 <li ng-show="$ctrl.signedIn()">
                     <a href="#"><i class="glyphicon glyphicon-user"></i>
-                    {{ $ctrl.user.username }}</a>
+                    {{ $ctrl.currentUser.username }}</a>
                 </li>
                 <li ng-click="$ctrl.logout()"
                     ng-show="$ctrl.signedIn()">
@@ -57,7 +57,9 @@
                   <a ui-sref="home">
                     <i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
                 </li>
-                <li ui-sref-active="active">
+                <li
+                        ng-show="$ctrl.currentUser.usertype === 'Scientist'"
+                        ui-sref-active="active">
                   <a ui-sref="patients-list">
                     <i class="glyphicon glyphicon-heart"></i> Patient List</a>
                 </li>

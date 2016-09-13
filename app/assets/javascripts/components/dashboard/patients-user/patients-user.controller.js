@@ -2,11 +2,12 @@ angular
   .module('dashboard')
   .controller('PatientsUserController', PatientsUserController);
 
-function PatientsUserController(PatientsService, ScientistsService) {
+function PatientsUserController(PatientsService, ScientistsService, UsersService) {
   var ctrl = this;
 
   ctrl.patients = PatientsService.userPatients;
   ctrl.scientists = ScientistsService.scientists;
+  ctrl.currentUser = UsersService.currentUser;
 
   // Move this to ui-router resolve(?)
   ScientistsService.getScientists();
@@ -16,4 +17,4 @@ function PatientsUserController(PatientsService, ScientistsService) {
   };
 }
 
-PatientsUserController.$inject = ['PatientsService', 'ScientistsService'];
+PatientsUserController.$inject = ['PatientsService', 'ScientistsService', 'UsersService'];

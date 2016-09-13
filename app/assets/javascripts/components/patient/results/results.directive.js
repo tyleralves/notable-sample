@@ -12,6 +12,9 @@ function ResultsChartDirective(PatientsService) {
       // Makes sure patient object is populated before attempting to draw chart
       if(Object.keys(newVal).length) {
         window.chart = new Highcharts.Chart({
+          title: {
+            text: 'Results'
+          },
           chart: {
             renderTo: 'results-chart',
             height: 400,
@@ -22,7 +25,13 @@ function ResultsChartDirective(PatientsService) {
               return item.combination;
             })
           },
+          yAxis: {
+            title: {
+              text: 'Score'
+            }
+          },
           series: [{
+            name: 'Test Run 1',
             data: PatientsService.patient.results.map(function(item) {
               item.name = item.combination;
               item.y = item.score;

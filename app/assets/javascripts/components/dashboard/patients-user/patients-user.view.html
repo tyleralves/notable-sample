@@ -14,7 +14,7 @@
                     <th>Name</th>
                     <th>Physician</th>
                     <th>Staff</th>
-                    <th>Reassign</th>
+                    <th ng-show="$ctrl.currentUser.usertype === 'Scientist'">Reassign</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
                     <td ui-sref="patient({patient_id: patient.id})">{{ patient.name }}</td>
                     <td ui-sref="patient({patient_id: patient.id})">{{ patient.physician.name }}</td>
                     <td ui-sref="patient({patient_id: patient.id})">{{ patient.scientist.name }}</td>
-                    <td>
+                    <td ng-show="$ctrl.currentUser.usertype === 'Scientist'">
                         <form ng-submit="$ctrl.assignScientist(patient.id, assignedScientist)">
                             <div class="input-group">
                                 <select

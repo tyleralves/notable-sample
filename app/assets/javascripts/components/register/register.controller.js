@@ -6,7 +6,8 @@ function RegisterController($state, Auth) {
   var ctrl = this;
 
   ctrl.user = {
-    type: 'Physician'
+    type: 'Physician',
+    usertype: 'Physician'
   };
 
   ctrl.register = function() {
