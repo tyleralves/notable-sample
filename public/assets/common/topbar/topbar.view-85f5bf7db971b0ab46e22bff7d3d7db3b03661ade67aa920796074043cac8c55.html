@@ -1,0 +1,94 @@
+<nav class="navbar n-navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid nav-container">
+
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle"
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle Navigation</span>
+                <i class="glyphicon glyphicon-menu-hamburger"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img class="brand-image" src="/assets/NotableLabs-Logo-01-355ffa848feb111d01e832afe81c2534257cf4d87e296e79fc184f7e857c5c39.png" />
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-collapse"
+             ng-class="{collapse: $ctrl.isCollapsed}"
+             id="collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ui-sref-active="active">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        Messages
+                    </a>
+                </li>
+                <li
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ng-hide="$ctrl.signedIn()">
+                    <a ui-sref="login">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                        Login
+                    </a>
+                </li>
+                <li
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ng-hide="$ctrl.signedIn()">
+                    <a ui-sref="register">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                        Register
+                    </a>
+                </li>
+                <li ng-show="$ctrl.signedIn()">
+                    <a href="#"><i class="glyphicon glyphicon-user"></i>
+                    {{ $ctrl.currentUser.username }}</a>
+                </li>
+                <li ng-click="$ctrl.logout(); $ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ng-show="$ctrl.signedIn()">
+                    <a href="#"><i class="glyphicon glyphicon-log-out"></i>
+                    Logout
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Side Nav -->
+            <!-- Side Nav slides off screen when toggle is clicked -->
+            <div class="side-nav-container" ng-class="{'side-nav-closed': $ctrl.NavService.isSideClosed}">
+              <ul class="nav navbar-nav side-nav">
+                <li
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ui-sref-active="active">
+                  <a
+                      ui-sref="home">
+                    <i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
+                </li>
+                <li
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ng-show="$ctrl.currentUser.usertype === 'Scientist'"
+                    ui-sref-active="active">
+                  <a ui-sref="patients-list">
+                    <i class="glyphicon glyphicon-heart"></i> Patient List</a>
+                </li>
+                <li
+                    ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed"
+                    ui-sref-active="active">
+                  <a ui-sref="notepad">
+                    <i class="glyphicon glyphicon-pencil"></i> Notepad</a>
+                </li>
+              </ul>
+              <div class="side-nav-close-btn" ng-click="$ctrl.closeSide()">
+                <i class="glyphicon"
+                   ng-class="{
+                   'glyphicon-chevron-left': !$ctrl.NavService.isSideClosed,
+                   'glyphicon-chevron-right active': $ctrl.NavService.isSideClosed
+                   }"></i>
+              </div>
+            </div>
+
+        </div>
+    </div>
+</nav>

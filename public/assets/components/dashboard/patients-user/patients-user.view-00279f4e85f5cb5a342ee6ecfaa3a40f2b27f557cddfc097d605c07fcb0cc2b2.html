@@ -1,0 +1,52 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <i class="glyphicon glyphicon-user"></i>
+            <span class="panel-title-text">My Patients</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Submitted</th>
+                    <th>Name</th>
+                    <th>Physician</th>
+                    <th>Staff</th>
+                    <th ng-show="$ctrl.currentUser.usertype === 'Scientist'">Reassign</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-show="!$ctrl.patients.length">
+                    <td>You currently have no patients.</td>
+                </tr>
+                <tr ng-repeat="patient in $ctrl.patients track by patient.id"
+                    ng-init="assignedScientist={id:null}">
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.created_at | date : 'MMM d, y - h:mm a' }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.name }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.physician.name }}</td>
+                    <td ui-sref="patient({patient_id: patient.id})">{{ patient.scientist.name }}</td>
+                    <td ng-show="$ctrl.currentUser.usertype === 'Scientist'">
+                        <form ng-submit="$ctrl.assignScientist(patient.id, assignedScientist)">
+                            <div class="input-group">
+                                <select
+                                        ng-options="scientist as scientist.name for scientist in $ctrl.scientists track by scientist.id"
+                                        class="form-control"
+                                        id="scientist-id"
+                                        ng-model="assignedScientist">
+                                </select>
+                                <span class="input-group-btn">
+                                    <input class="btn btn-primary" type="submit" value="Assign" />
+                                </span>
+                            </div>
+
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
