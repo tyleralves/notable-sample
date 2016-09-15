@@ -5,7 +5,10 @@ angular
 function LoginController($state, Auth) {
   var ctrl = this;
 
-  ctrl.user = {};
+  ctrl.user = {
+    email: 'test1@test.com',
+    password: 'bernard'
+  };
   ctrl.error = '';
 
   ctrl.login = function() {

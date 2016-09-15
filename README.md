@@ -1,16 +1,16 @@
 Introduction:
 This sample application shows a possible dashboard implementation that could be used by Notable Labs to manage patients. Both staff and clients (physicians) users are allowed to create new patients. Staff are able to organize patient results and status and clients (physicians) are able to view those results and status updates. 
 
-To see a quick screen capture demonstrating all features, please visit: vimeo.com/
+To see a quick screen capture demonstrating all features, please visit: https://vimeo.com/182626441
 
 The app is written using Ruby on Rails with Angular 1.5 on the front-end. User Authentication is handled with the Devise Ruby gem. Highcharts is used to display patients test results uploaded from a csv (details below).
 
 Instructions:
 1. Login as either a staff or client (physician) user.
-    - staff: 
+    - Staff: 
     username: test1@test.com
     password: bernard
-    - Client: 
+    - Client (Physician): 
     username: test_doc1@test.com
     password: bernard
     --> Redirects to Dashboard component
